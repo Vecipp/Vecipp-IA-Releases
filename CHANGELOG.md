@@ -5,6 +5,10 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.17 — 2026-10-17
+- **Ves cómo piensa Claude**: si usas tu propia clave de Anthropic, el modelo ahora razona antes de responder y lo ves mientras trabaja; `/effort` decide cuánto piensa.
+- **La pantalla de siempre**: la CLI sigue con su interfaz clásica, rápida y ligera, con tus atajos, el ratón y el scroll de siempre.
+
 ### CLI 1.0.16 — 2026-10-13
 - **Listas de modelos claras y separadas**: en **`/model`** salen **solo tus proveedores** (los que agregaste con tu API key, p. ej. NVIDIA o Hostinger, con todos sus modelos) y los oficiales de Vecipp. Como Vecipp **todavía no tiene modelos oficiales**, esa parte sale **vacía** (ya no aparecen modelos "Vecipp IA" que nunca aplicaste).
 - **`/lab` muestra solo los cerebros del laboratorio** (Claude, Codex, Copilot, Antigravity, Qoder), agrupados por cerebro — **ya no mezcla tus proveedores** (NVIDIA/Hostinger). Esos van en `/model`. (Antes, por un error, `/lab` abría la lista de tus proveedores.)
@@ -121,7 +125,7 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - **`/model` ya no gasta nada al abrirse**: antes probaba 10 modelos con llamadas reales (en proveedores de pago eso costaba créditos). Ahora solo se comprueba el que eliges, y solo en proveedores gratis.
 
 ### CLI 1.0.6 — 2026-10-12
-- **La línea de trabajo dice la verdad**: qué está haciendo de verdad (`Reading app.js`, `Running npm test`, `Thinking`, `Calling Chrome · clicking…`, `Waiting for kimi-k3`), el tiempo y los tokens reales. Se pone **amarilla** si el modelo deja de responder unos segundos y **roja** si se trabó.
+- **La línea de trabajo dice la verdad**: qué está haciendo de verdad (`Reading app.js`, `Running npm test`, `Thinking`, `Calling Chrome · clicking…`), el tiempo y los tokens reales. Se pone **amarilla** si el modelo deja de responder unos segundos y **roja** si se trabó.
 - **`/effort low | medium | high`**: cuánto razonan los modelos que piensan antes de responder (se ve en la barra y en la línea de trabajo).
 - **`/cost` y `/stats`**: los tokens de esta conversación y el consumo de este PC (hoy, 7 y 30 días, por modelo), con los créditos que cobra el proveedor. Todo queda en tu PC (`~/.vecipp/usage.jsonl`).
 - El agente **cuenta lo que va haciendo** en una frase antes de cada grupo de acciones, en vez de trabajar callado.

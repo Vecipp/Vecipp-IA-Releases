@@ -83,17 +83,17 @@ vecipp                     # o vecipp-cli
 | `/resume` · `/sessions` · `/history` | Retomar una sesión guardada |
 | `/plan` · `/planmode` · `/auto` | Ver el plan · pedir permiso en cada acción · aprobar cambios solo |
 | `/diff` · `/context` · `/compact` | Cambios pendientes · uso del contexto · resumir para liberar contexto |
-| `/vps` | Conectar un servidor por SSH |
 | `/init` | Analizar el proyecto y crear `VECIPP.md` |
 | `/tools` · `/agent` · `/help` | Herramientas disponibles · rol del agente · ayuda |
 
-Opciones al abrir: `vecipp -C <carpeta>`, `vecipp --no-vps`, `vecipp --version`.
+Opciones al abrir: `vecipp -C <carpeta>`, `vecipp --version`.
 
 ## Qué puede hacer
 
 - **Una terminal con estilo propio**: pantalla completa inspirada en Kali Linux, prompt `┌──(vecipp㉿proyecto)` fijo
   abajo, terminal translúcida (`/appearance`), ratón para desplazarte, copiar y abrir cambios y enlaces, y modo root con
-  `shift+tab`. Le puedes escribir mientras trabaja sin interrumpirlo.
+  `shift+tab`. Le puedes escribir aunque esté trabajando; `ctrl+b` manda lo escrito y mueve el turno al fondo (`esc`
+  lo para).
 - **Trabajar en tu código**: leer, buscar, editar y crear archivos; mostrarte cada cambio antes de aplicarlo.
 - **Correr cosas de verdad**: comandos, varias shells a la vez, procesos en segundo plano, pruebas y compilaciones.
 - **Tus servidores**: conectarse por SSH a tu VPS y trabajar ahí con las mismas herramientas.
