@@ -5,6 +5,35 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.18 — 2026-10-18
+- **El plan, a la vista y sin estorbar**: mientras Vecipp trabaja, encima del verbo ves `▴ Plan 3/8 · la tarea en la que va`; un clic lo despliega. Las tareas se marcan cuando de verdad se terminan, y al acabar el plan se quita.
+- **El cursor parpadea** en el cuadro de texto.
+- **Lo que pensó, plegado**: al terminar, el razonamiento queda en una línea, `𓄀 Thought for 3s ▸`; un clic lo abre entero.
+- **Alineado en cualquier terminal**: tu mensaje, la respuesta, lo que piensa, cada paso y los avisos empiezan en la misma columna, con el mismo espacio después de cada marca, en cualquier terminal (Vecipp mide cómo dibuja la tuya sus símbolos).
+- **Ves lo que un comando cambió**: si Vecipp edita archivos con la shell (`sed -i`, un script), debajo del comando sale «Updated archivo +N -N» con el cambio, como en una edición.
+- **Mira a tus agentes y shells trabajar**: bajo el prompt ves `⌬ 2 agents · ▸ 1 shell · ↓ to manage`. Con ↓, una shell te muestra su comando y su salida en vivo (x la detiene) y un agente abre su chat para que veas qué hace, paso a paso; lo que escribes sigue yendo a tu chat, Esc te devuelve y, cuando el agente termina, vuelves solo.
+- **Vecipp no se olvida de lo que dejó corriendo**: si termina con una shell trabajando, cuando ella acaba Vecipp vuelve solo y te dice cómo le fue.
+- **Trabaja con el método de Claude, con cualquier modelo**: lee todo lo que necesita de una vez, corre las pruebas antes de tocar nada, arregla todo y vuelve a probar, y comprueba que un test nuevo de verdad detecta el error. Y nunca toca carpetas fuera de tu proyecto.
+- **Ves lo que hace mientras trabaja, como en Claude Code**: cada cambio a un archivo sale entero y en un solo bloque —lo que quitó en rojo, lo que puso en verde, con el número de cada línea—; un archivo nuevo, con sus primeras líneas (un clic lo muestra entero). Leer, buscar y ejecutar se juntan en una línea gris que un clic despliega con la salida de cada comando.
+- **«Allowed by auto mode»** bajo los pasos que corrieron sin preguntarte, para que sepas por qué.
+- **Tablas que se leen**: caben en tu terminal y el texto largo se parte dentro de su celda en vez de cortarse con «…». Los diagramas (`mermaid`) se dibujan con cajas y flechas, los árboles de carpetas con sus iconos y el código con colores.
+- **Escribe mensajes largos tranquilo**: la franja de abajo crece y te muestra todo lo que escribes.
+- **Entregas claras**: al terminar un trabajo, Vecipp te dice qué hizo, cómo lo comprobó, qué falta y, si trabajó por fases, en qué quedó cada una.
+- **Aprobar es contestar una pregunta**: «¿Quieres hacer este cambio en a.txt?» con el cambio a la vista y tres respuestas — sí, sí a todas las ediciones de la sesión (shift+tab) o no y decirle qué hacer en su lugar. Igual para los comandos, las preguntas de Vecipp y el plan.
+- **Pega sin miedo**: un texto largo entra como `[Pasted text #1 +40 lines]` y una captura (alt+v) como `[Image 1]`; Vecipp recibe todo completo.
+- **Vuelve a donde estabas**: al salir, Vecipp te deja el comando `vecipp -s <id>` para retomar esa conversación.
+- **Mira lo que piensa, en vivo**: toca la barra de «Thinking…» (o alt+t) y se abre hacia abajo con el razonamiento corriendo, en un gris claro que se lee bien, con cualquier modelo que lo comparta; si el modelo no lo comparte, te lo dice. «Thought for Ns» lo muestra entero.
+- **Las herramientas en marcha con el logo**: los dos triángulos de Vecipp cambian de color mientras una herramienta trabaja, y lo que terminó bien lleva ✓.
+- **Todo alineado**: las marcas en una columna, el texto en otra y los árboles colgando del texto, como en Claude Code. Un comando que corre se ve entero, con su tiempo y «ctrl+b to run in background».
+- **Marcas propias, en texto**: 𓄃 abre lo que dice el agente, 𓄀 lo que piensa, ⌬ cierra cada turno, ❖ el recap, ▴ el plan, ⏻ los avisos y ⚠ los importantes. El recap sale al final de la conversación, como en Claude Code.
+- **Mucho más fluida**: con conversaciones largas, escribir, hacer scroll, abrir el razonamiento o hacer clic mientras el agente trabaja responde al instante (de casi 1 s a unos 30 ms), sin cambiar nada de cómo se ve.
+- **La barra con vida**: el verbo de la barra y «Thinking» llevan un color en movimiento; lo que hace en cada momento y «Thought for Ns» se marcan en azul.
+- **Tus mensajes se distinguen**: van en una banda gris con → y la hora, como el mensaje fijado arriba, y crece con lo que escribes.
+- **Una bienvenida al iniciar sesión**: tu logo entre triángulos, el tema del código con vista previa (Vecipp Dark, Monokai, GitHub Dark, Nord, Monochrome; luego `/theme`), las condiciones y la privacidad para leerlas y aceptarlas (`/terms`, `/privacy`) y si sincronizar tus sesiones.
+- **Respuestas con un poco de color**: el código y las rutas en un azul suave, la negrita más clara y la cursiva en lo secundario.
+- **Ves cómo trabaja, como en Claude Code**: la barra cambia de verbo en cada turno (Pondering…, Spelunking…) y debajo, en un árbol, las etapas de lo que va pensando y lo que hace en ese momento («Running a command on rylax», «Reading file»); el plan aparece debajo con sus pasos (✓ hechos, ◼ el actual). Los comandos se ven como `Running command · 3s…` con `$ comando` debajo, y cada edición dice «Added 2 lines, removed 1 line».
+- **Responde antes**: cada mensaje le pesa al modelo una cuarta parte de lo que pesaba (carga sólo las herramientas que usa) y, si un modelo gratis se atasca, Vecipp pasa enseguida a otro y te avisa en vez de dejarte esperando minutos.
+
 ### CLI 1.0.17 — 2026-10-17
 - **Ves cómo piensa Claude**: si usas tu propia clave de Anthropic, el modelo ahora razona antes de responder y lo ves mientras trabaja; `/effort` decide cuánto piensa.
 - **La pantalla de siempre**: la CLI sigue con su interfaz clásica, rápida y ligera, con tus atajos, el ratón y el scroll de siempre.
