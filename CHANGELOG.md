@@ -5,6 +5,39 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.19 — 2026-10-19
+- **Los modelos Gemini ya funcionan con todas las herramientas**: antes, una sola herramienta mal descrita hacía que Gemini rechazara cada paso en cuanto Vecipp le daba sus herramientas; ahora trabaja normal, y ve las imágenes que abre (capturas, fotos, diagramas).
+- **Cambios en varios archivos de una sola vez**: un renombrado o un refactor va en un paso que apruebas una vez, y es todo o nada: si una parte no encaja, no se toca ningún archivo.
+- **Prueba solo lo que cambió**: después de cada cambio corre los tests de ese archivo en segundos, en vez de todo el proyecto.
+- **Deshace lo suyo**: si un enfoque salió mal, Vecipp puede deshacer sus propios cambios del turno y empezar limpio (tú sigues teniendo `/rewind` para turnos enteros).
+- **Entiende tu TypeScript como el editor**: usa el TypeScript de tu proyecto para ver los errores de los archivos que tocó al instante, dónde se usa de verdad una función (sin confundirla con otra del mismo nombre) y cada lugar que cambia un renombrado.
+- **Tus servidores, a otro nivel**: abre un túnel SSH a una base de datos que no es pública, deja un comando largo corriendo de fondo en el servidor y te dice cómo terminó, y despliega tu proyecto con su propio método (script deploy, deploy.sh, Fly, Vercel, Netlify, pm2) — **siempre preguntándote antes**.
+- **Entiende mejor a cualquier modelo**: si un modelo manda mal los datos de una herramienta (un nombre cambiado, un número como texto, un archivo con saltos de línea mal escritos), Vecipp los corrige y sigue, en vez de fallar; y entiende los errores de Windows en español.
+- **Servidores de desarrollo en Windows sin sorpresas**: arranca `npm` y `vite` supervisados y, al detenerlos, baja también lo que lanzaron (el puerto queda libre).
+- **La pantalla y el teclado, bien en Windows**: hace clic donde ve aunque tengas la escala al 125 o 150 %, y escribe acentos, ñ y emoji.
+- **SSH que explica**: si no conecta, dice por qué (alias que no existe, llave rechazada, servidor que no responde, llave del servidor cambiada) y qué hacer; acepta una llave o un puerto para una sola conexión.
+- **Tu celular por Wi-Fi**: Vecipp puede emparejar y conectar un Android con «Depuración inalámbrica», esperar a que esté listo y reiniciarlo; mirar la pantalla, las apps o los registros ya no pide permiso.
+- **Busca más rápido y lee archivos enormes**: la búsqueda en el código usa ripgrep (respeta tu `.gitignore`), lee un tramo de un archivo gigante sin cargarlo entero y, si un buscador web no responde, prueba otro.
+- **Python con tu entorno**: usa el `.venv` del proyecto y, si falta un módulo, te da el `pip install` exacto (con el nombre real del paquete).
+- **Subagentes con límite**: cada uno tiene un tiempo máximo y se reintenta una vez si se cae; corren de a tres como máximo.
+- **Reacciona mejor cuando algo falla**: reconoce el tipo de error (un programa que falta, una ruta equivocada, un archivo bloqueado, permisos, un puerto ocupado, la red, una dependencia) y toma la salida que corresponde en vez de repetir. Si intenta otra vez exactamente lo que ya falló sin cambiar nada, se le avisa que cambie de enfoque (y tú lo ves).
+- **Ediciones que aciertan**: si el texto a cambiar no está tal cual en el archivo, Vecipp ve las líneas reales más parecidas y la primera diferencia, y lo corrige a la primera; si la edición ya estaba hecha, se da cuenta.
+- **Respeta los archivos de Windows**: al reescribir un archivo con finales de línea CRLF (y BOM) los conserva, así git no lo marca entero como cambiado.
+- **Programa con sus herramientas a la mano**: el mapa del proyecto, buscar dónde se define y usa una función, los errores del compilador, el formateador, la revisión del cambio y el depurador ya están disponibles desde el primer mensaje.
+- **Más cuidado con tus servidores y tu celular**: aunque tengas la aprobación automática, Vecipp te pregunta antes de un comando por SSH que cambie el servidor (los que sólo miran pasan solos), de escribir un archivo en el VPS, de detener o reiniciar un servicio, de desinstalar una app o borrar datos del celular, y de un `DELETE` o `UPDATE` sin `WHERE` en la base de datos. Lo que se escribe en una terminal interactiva también pide permiso.
+- **Varias bases de datos a la vez, sin mezclarse**: si consultas una segunda base en la misma sesión, la consulta va a esa base (antes podía caer en la primera).
+- **`verify` revisa todo en los monorepos**: en un proyecto con Turborepo corre `turbo run check build test`, sin saltarse la revisión de tipos.
+- **Mucho más fluida mientras trabaja**: escribir, desplazarte o tocar algo mientras corre un comando o escribe código responde de 3 a 5 veces más rápido, y usa la mitad de procesador.
+- **Sin falsas alarmas**: mientras un comando largo trabaja ya no dice «no response»; si el modelo de verdad tarda, lo dice en ámbar. Esperar un comando largo ya no se marca como fallo, y lo que sale mal va en ámbar, no en rojo.
+- **El plan, una sola vez**: anclado encima mientras trabaja, sin repetirse en la conversación; y sólo para trabajos de verdad grandes.
+- **Sin respuestas repetidas**: si Vecipp ya esperó a que un comando terminara, no vuelve a contártelo.
+- **`/effort` ahora sí cambia algo con los modelos de Vecipp**: antes el nivel elegido no llegaba al servicio de Vecipp y siempre respondía en «medium»; ahora `low` contesta más corto y rápido y `high` piensa y escribe más.
+- **Sin «tienes razón» a nadie**: si Vecipp sólo leyó y te explicó algo, ya no le pide pruebas de un trabajo que no hizo (antes a veces contestaba disculpándose por un mensaje que tú no escribiste). El chequeo sigue para cuando cambia archivos y dice que quedó listo.
+- **Falla mucho menos al editar archivos**: antes, si el texto a cambiar no coincidía al carácter (un espacio o una sangría distinta) la edición fallaba y había que reintentar; ahora Vecipp tolera esas diferencias de espacios y acierta a la primera, sin tocar nada ambiguo.
+- **Recuerda cómo pensó**: el razonamiento de todos los modelos (no sólo los de Anthropic) queda guardado en la sesión, para poder revisarlo y comparar.
+- **`/effort` ahora con 5 niveles, como Claude**: `low · medium · high (por defecto) · xhigh · max`. El selector pinta cada nivel con un color que sube de frío a caliente (como el indicador de pensamiento), y ese mismo nivel gobierna el razonamiento de cualquier modelo que uses (también en Telegram, con botones).
+- **Recuerda mejor al resumir una charla larga**: cuando el contexto se llena, Vecipp resume lo viejo de forma ordenada (objetivo, decisiones, estado, siguiente paso, archivos) y conserva los últimos turnos tal cual, para no perder el detalle reciente.
+
 ### CLI 1.0.18 — 2026-10-18
 - **El plan, a la vista y sin estorbar**: mientras Vecipp trabaja, encima del verbo ves `▴ Plan 3/8 · la tarea en la que va`; un clic lo despliega. Las tareas se marcan cuando de verdad se terminan, y al acabar el plan se quita.
 - **El cursor parpadea** en el cuadro de texto.
@@ -203,6 +236,30 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - Los artefactos que creas suben solos a ia.vecipp.com › Artefactos.
 
 ## Escritorio
+
+### Escritorio 1.0.11 — 2026-10-19
+- **Los modelos Gemini ya funcionan con todas las herramientas**: antes, una sola herramienta mal descrita hacía que Gemini rechazara cada paso en cuanto Vecipp le daba sus herramientas; ahora trabaja normal, y ve las imágenes que abre (capturas, fotos, diagramas).
+- **Cambios en varios archivos de una sola vez**: un renombrado o un refactor va en un paso que apruebas una vez, y es todo o nada: si una parte no encaja, no se toca ningún archivo.
+- **Prueba solo lo que cambió**: después de cada cambio corre los tests de ese archivo en segundos, en vez de todo el proyecto.
+- **Deshace lo suyo**: si un enfoque salió mal, Vecipp puede deshacer sus propios cambios del turno y empezar limpio (tú sigues teniendo `/rewind` para turnos enteros).
+- **Entiende tu TypeScript como el editor**: usa el TypeScript de tu proyecto para ver los errores de los archivos que tocó al instante, dónde se usa de verdad una función (sin confundirla con otra del mismo nombre) y cada lugar que cambia un renombrado.
+- **Tus servidores, a otro nivel**: abre un túnel SSH a una base de datos que no es pública, deja un comando largo corriendo de fondo en el servidor y te dice cómo terminó, y despliega tu proyecto con su propio método (script deploy, deploy.sh, Fly, Vercel, Netlify, pm2) — **siempre preguntándote antes**.
+- **Entiende mejor a cualquier modelo**: si un modelo manda mal los datos de una herramienta (un nombre cambiado, un número como texto, un archivo con saltos de línea mal escritos), Vecipp los corrige y sigue, en vez de fallar; y entiende los errores de Windows en español.
+- **Servidores de desarrollo en Windows sin sorpresas**: arranca `npm` y `vite` supervisados y, al detenerlos, baja también lo que lanzaron (el puerto queda libre).
+- **La pantalla y el teclado, bien en Windows**: hace clic donde ve aunque tengas la escala al 125 o 150 %, y escribe acentos, ñ y emoji.
+- **SSH que explica**: si no conecta, dice por qué (alias que no existe, llave rechazada, servidor que no responde, llave del servidor cambiada) y qué hacer; acepta una llave o un puerto para una sola conexión.
+- **Tu celular por Wi-Fi**: Vecipp puede emparejar y conectar un Android con «Depuración inalámbrica», esperar a que esté listo y reiniciarlo; mirar la pantalla, las apps o los registros ya no pide permiso.
+- **Busca más rápido y lee archivos enormes**: la búsqueda en el código usa ripgrep (respeta tu `.gitignore`), lee un tramo de un archivo gigante sin cargarlo entero y, si un buscador web no responde, prueba otro.
+- **Python con tu entorno**: usa el `.venv` del proyecto y, si falta un módulo, te da el `pip install` exacto (con el nombre real del paquete).
+- **Subagentes con límite**: cada uno tiene un tiempo máximo y se reintenta una vez si se cae; corren de a tres como máximo.
+- **Reacciona mejor cuando algo falla**: reconoce el tipo de error (un programa que falta, una ruta equivocada, un archivo bloqueado, permisos, un puerto ocupado, la red, una dependencia) y toma la salida que corresponde en vez de repetir. Si intenta otra vez exactamente lo que ya falló sin cambiar nada, se le avisa que cambie de enfoque (y tú lo ves).
+- **Ediciones que aciertan**: si el texto a cambiar no está tal cual en el archivo, Vecipp ve las líneas reales más parecidas y la primera diferencia, y lo corrige a la primera; si la edición ya estaba hecha, se da cuenta.
+- **Respeta los archivos de Windows**: al reescribir un archivo con finales de línea CRLF (y BOM) los conserva, así git no lo marca entero como cambiado.
+- **Programa con sus herramientas a la mano**: el mapa del proyecto, buscar dónde se define y usa una función, los errores del compilador, el formateador, la revisión del cambio y el depurador ya están disponibles desde el primer mensaje.
+- **Más cuidado con tus servidores y tu celular**: aunque tengas la aprobación automática, Vecipp te pregunta antes de un comando por SSH que cambie el servidor (los que sólo miran pasan solos), de escribir un archivo en el VPS, de detener o reiniciar un servicio, de desinstalar una app o borrar datos del celular, y de un `DELETE` o `UPDATE` sin `WHERE` en la base de datos. Lo que se escribe en una terminal interactiva también pide permiso.
+- **Varias bases de datos a la vez, sin mezclarse**: si consultas una segunda base en la misma sesión, la consulta va a esa base (antes podía caer en la primera).
+- **`verify` revisa todo en los monorepos**: en un proyecto con Turborepo corre `turbo run check build test`, sin saltarse la revisión de tipos.
+- **El esfuerzo ahora sí cambia algo con los modelos de Vecipp**: antes el nivel elegido no llegaba al servicio de Vecipp y siempre respondía en «medium»; ahora «low» contesta más corto y rápido y «high» piensa y escribe más.
 
 ### Escritorio 1.0.10 — 2026-10-14
 - **No te deja tirado si un modelo falla**: si el modelo que usas se cae, se cuelga o devuelve vacío a mitad de una tarea, Vecipp **salta solo a otro de tus modelos** y te avisa; si de verdad no queda ninguno, te lo dice en vez de quedarse mudo.
