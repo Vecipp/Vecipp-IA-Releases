@@ -5,6 +5,27 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.20 — 2026-10-20
+- **Nunca te quedas atrás**: cuando sale una versión nueva, Vecipp te lo dice en la esquina (`⬆ NEW UPDATE … · /update`) y la instala sola la próxima vez que lo abres, antes del chat, con su pantalla: la descarga con barra de progreso, la verificación, la instalación y qué trae de nuevo. Con `/update` (o un clic en el aviso) se instala ya. Si algo falla, abre la versión que tenías.
+- **No pierde el hilo**: Vecipp guarda la conversación después de cada paso. Si se cierra en medio de una tarea, al abrirlo otra vez en la misma carpeta te dice que estaba trabajando y sigue desde donde iba, con todo lo que había hecho. Al interrumpirlo o escribirle mientras trabaja, tampoco pierde nada; y con los modelos del laboratorio, al retomar una conversación larga ya no se olvida de la tarea del principio.
+- **Ya no se queda pegado esperando al modelo**: si el modelo deja de escribir 90 segundos aunque la conexión siga viva, Vecipp le vuelve a pedir lo mismo, con el mismo contexto, y te avisa; con cualquier modelo.
+- **Auto mode que no pregunta de más**: los comandos que sólo miran (un `grep` con `|` en el patrón, un `echo` con `>` en el texto, `sed -n`, `pm2 logs`, `systemctl status`, `docker ps`, un `curl` que sólo consulta…) ya no piden permiso. Lo que de verdad cambia tu servidor sigue preguntando.
+- **Una barra de abajo más delgada**: el cuadro de texto es más fino, a la derecha sólo dice `/ Commands`, y los artefactos, agentes y shells son iconos en la barra de estado (⧉ ♙ >_) que se abren con un clic, en vez de líneas debajo.
+- **Imágenes con cualquier modelo**: si el modelo ve imágenes, recibe la imagen tal cual (Vecipp lo comprueba una sola vez con cada modelo y lo recuerda). Si no las ve, Vecipp te avisa y le pasa lo que leyó de la imagen con Python —el texto (también en español), los colores, las formas y los códigos QR—, y el modelo sabe que no es la imagen. La primera vez prepara ese lector (unos 2 minutos; necesita Python 3).
+- **Fluida mientras escribe respuestas largas**: cuando el modelo escribe una respuesta larga con código y tablas, escribir o desplazarte responde al instante (antes una tecla podía tardar casi un segundo). Nada cambia de cómo se ve: los colores, las animaciones y el razonamiento siguen igual.
+- **Ya no se congela de golpe**: detener un servidor de fondo, ver los procesos o los puertos, revisar los errores de TypeScript, mapear el proyecto o usar Python por primera vez ya no dejan la pantalla quieta unos segundos mientras trabajan.
+- **Abre más rápido**: la conexión con Chrome se prepara después de mostrar la pantalla, y `/chrome` no se traba al abrirse.
+- **Sesiones largas sin frenarse**: deshacer cambios, guardar la conversación y listar tus sesiones ya no se vuelven más lentos a medida que la sesión crece.
+- **`@` al instante**: la lista de archivos del proyecto se prepara sola en segundo plano.
+- **Pegar justo después de escribir**: las letras que escribes justo antes de pegar ya no se meten dentro de la ficha del pegado.
+- **Un diseño nuevo, más limpio y ordenado**: la conversación se lee como una línea de tiempo. Cada paso es una fila con un punto —verde si salió bien, rojo si falló—, la acción, el archivo y sus cifras a la derecha (`+3 -1`); el código que cambia cuelga de una línea fina; las respuestas llevan un punto blanco y lo que pensó, uno gris. Cada turno cierra con una regla con su tiempo.
+- **La línea de trabajo, como debe ser**: abajo, una sola línea con el icono de Vecipp que titila y el verbo en verde que brilla por momentos —«⌬ Forging… (23s · ↓ 673 tokens · thought for 2s)»—, sin el árbol de antes; tócala (o Alt+T) y ves su razonamiento en vivo.
+- **Una portada nueva**: al abrir Vecipp ves un lobo dibujado en puntos sobre montañas, nubes y suelo, con el logo y el nombre de Vecipp en una esquina. Sin colores propios —toma el de tu terminal, clara u oscura— y más sencilla cuanto más pequeña es la ventana (en una muy pequeña, sólo el lobo). Se va con tu primer mensaje.
+- **Barras más ordenadas**: arriba, tu proyecto y su rama con su nombre completo; abajo, la barra de estado en segmentos con un medidor de contexto. El logo ya no sale dos veces y los colores son más tranquilos.
+- **Borrar dejando presionado funciona**: mantener Retroceso borra como debe; antes, en un equipo ocupado, no borraba y dejaba una franja negra al final de la caja.
+- **La caja de texto de borde a borde**: la banda gris de abajo ya no tiene una muesca negra en el borde derecho.
+- **Seleccionar con el mouse sin perder los colores**: lo que seleccionas se marca con un fondo, como en un editor; la caja, tus mensajes y los colores de los cambios ya no se ponen negros mientras arrastras.
+
 ### CLI 1.0.19 — 2026-10-19
 - **Los modelos Gemini ya funcionan con todas las herramientas**: antes, una sola herramienta mal descrita hacía que Gemini rechazara cada paso en cuanto Vecipp le daba sus herramientas; ahora trabaja normal, y ve las imágenes que abre (capturas, fotos, diagramas).
 - **Cambios en varios archivos de una sola vez**: un renombrado o un refactor va en un paso que apruebas una vez, y es todo o nada: si una parte no encaja, no se toca ningún archivo.
@@ -236,6 +257,12 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - Los artefactos que creas suben solos a ia.vecipp.com › Artefactos.
 
 ## Escritorio
+
+### Escritorio 1.0.12 — 2026-10-20
+- **Nunca te quedas atrás**: cuando sale una versión nueva, la ventana lo dice arriba a la derecha (`⬆ NEW UPDATE`) con lo que trae; «Update now» la descarga con su barra de progreso, la verifica, la instala y Vecipp se vuelve a abrir solo. Si no la tocas, se instala sola la próxima vez que abres Vecipp, antes del chat.
+- **Imágenes con cualquier modelo**: si el modelo ve imágenes, recibe la imagen tal cual (Vecipp lo comprueba una sola vez con cada modelo y lo recuerda). Si no las ve, Vecipp te avisa y le pasa lo que leyó de la imagen con Python —el texto (también en español), los colores, las formas y los códigos QR—, y el modelo sabe que no es la imagen. La primera vez prepara ese lector (unos 2 minutos; necesita Python 3).
+- **Ya no se congela de golpe**: detener un servidor de fondo, ver los procesos o los puertos, mapear el proyecto o usar Python por primera vez ya no dejan la ventana quieta unos segundos mientras trabajan.
+- **Sesiones largas sin frenarse**: deshacer cambios, guardar la conversación y listar tus sesiones ya no se vuelven más lentos a medida que la sesión crece.
 
 ### Escritorio 1.0.11 — 2026-10-19
 - **Los modelos Gemini ya funcionan con todas las herramientas**: antes, una sola herramienta mal descrita hacía que Gemini rechazara cada paso en cuanto Vecipp le daba sus herramientas; ahora trabaja normal, y ve las imágenes que abre (capturas, fotos, diagramas).
