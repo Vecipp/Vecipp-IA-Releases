@@ -5,6 +5,10 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.24 — 2026-10-27
+- **Lo que pegas, en verde, y tu mensaje muestra lo que lleva dentro**: las fichas `[Image 1]` y `[Pasted text #1 +40 lines]` del cuadro de texto salen en verde, y al enviar tu mensaje ya no lleva la ficha: se ve **todo el texto pegado** (texto plano, sin markdown) y, si pegaste o arrastraste una imagen, **su ruta**. Una captura del portapapeles no tiene ruta y sigue como `[Image 1]`.
+- **La carpeta y la rama, como en la portada**: arriba se lee `Desktop/Vecipp-IA  ⎇ claude/telegram-bloque1`, con el `⎇` y la rama en su gris, en vez de un punto y la rama perdida entre el texto. Así sabes de un vistazo en qué rama estás trabajando.
+
 ### CLI 1.0.23 — 2026-10-27
 - **Ya no se detiene a los 80 pasos**: una tarea larga sigue hasta terminar, como en Claude Code, sin el «Step limit reached (80)» que te obligaba a escribir «continúa». Queda un freno muy alto (400) por si un modelo se queda dando vueltas. Los agentes de fondo siguen con su límite de 80.
 - **«Thought for» abajo cuadra con el chat**: el total de la línea de trabajo es la suma de los `∴ Thought for Ns` que van quedando. Antes contaba como «pensando» el tiempo que el modelo pasaba escribiendo un archivo después de razonar, y llegaba a 200 s con filas de 1 a 3 s.
@@ -340,9 +344,6 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - Los artefactos que creas suben solos a ia.vecipp.com › Artefactos.
 
 ## Escritorio
-
-### Escritorio Próxima versión (sin publicar)
-- **Un archivo largo con Claude ya no empieza de nuevo**: mientras el modelo escribe un archivo o un comando largo, Vecipp sabe que sigue trabajando. Antes, si tardaba más de 90 segundos, creía que se había colgado y le volvía a pedir lo mismo desde el principio.
 
 ### Escritorio 1.0.13 — 2026-10-20
 - **Tus conversaciones son solo tuyas**: cada conversación sabe de qué cuenta de Vecipp es. Si otra persona entra con su cuenta en el mismo computador, solo ve las suyas y no puede abrir ni borrar las tuyas, y nada tuyo se sube a su cuenta. Tus credenciales, tus servidores, tus claves de API y tus skills también son solo de tu cuenta. Al entrar con otra cuenta o al cerrar sesión, la lista se renueva y empiezas limpio.
