@@ -5,6 +5,11 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.23 — 2026-10-27
+- **Ya no se detiene a los 80 pasos**: una tarea larga sigue hasta terminar, como en Claude Code, sin el «Step limit reached (80)» que te obligaba a escribir «continúa». Queda un freno muy alto (400) por si un modelo se queda dando vueltas. Los agentes de fondo siguen con su límite de 80.
+- **«Thought for» abajo cuadra con el chat**: el total de la línea de trabajo es la suma de los `∴ Thought for Ns` que van quedando. Antes contaba como «pensando» el tiempo que el modelo pasaba escribiendo un archivo después de razonar, y llegaba a 200 s con filas de 1 a 3 s.
+- **Los shells, en palabras**: la barra de abajo dice «1 shell» o «2 shells», en vez de `>_ 1`. Un clic encima sigue abriéndolos.
+
 ### CLI 1.0.22 — 2026-10-27
 - **Lee lo que escribió mientras te pregunta**: cuando Vecipp te hace una pregunta (o te pide permiso), la rueda del ratón sobre la conversación la sube y baja para que leas todo antes de contestar; sobre las opciones sigue cambiando la opción. Fuera de la pantalla completa funciona el desplazamiento normal de tu terminal. Y el aviso «Jump to bottom» ya se ve encima de la pregunta.
 - **El razonamiento plegado, más limpio**: la fila queda `∴ Thought for 3s`, sin «(click to show thinking)»; un clic la sigue abriendo y cerrando.
