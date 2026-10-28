@@ -5,6 +5,13 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.26 — 2026-10-28
+- **Una barra a cada lado**: cada herramienta que ya pasó y el razonamiento que abres van entre dos barras verticales, a la izquierda y a la derecha, para que cada bloque se lea aparte.
+- **«Thought for» con el tiempo real**: lo que queda en el chat dice cuánto pensó de verdad el modelo (antes, con algunos modelos, siempre decía 1s aunque hubiera pensado 10).
+- **La compactación automática, en su punto y por conversación**: el porcentaje de contexto usa la ventana real de cada modelo (DeepSeek V4 tiene un millón de tokens, no 128 000), la compactación ocurre al llegar al 30 % de verdad y ya no se repite en bucle, y cada conversación lleva su propio contexto.
+- **Colores de verdad en cada herramienta**: lo que lee el agente sale con los colores de su lenguaje (como en tu editor), y la salida de un comando o de tu servidor por ssh, con colores como en una terminal: carpetas en azul, ejecutables en verde, errores en rojo, avisos en amarillo, el disco casi lleno en rojo, `active (running)` en verde, los logs de pm2 con su app, y las IP, enlaces y horas. Si el programa trae sus propios colores, se ven los suyos. El modelo sigue recibiendo texto limpio: no gasta más.
+- **Argumentos mal escritos, reparados**: si el modelo escribe un comando con una barra invertida que el formato no admite (por ejemplo `\$` en un comando de shell), Vecipp lo arregla y la herramienta corre igual, en lugar de fallar.
+
 ### CLI 1.0.25 — 2026-10-28
 - **Las herramientas de Claude Code, con sus nombres**: el agente trabaja con las mismas herramientas que Claude Code —`Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `Agent`, `TaskStop`, `LSP`…—. Son la mitad que antes (73 en vez de 146) y la lista de herramientas que va en cada pedido al modelo pesa casi la mitad (unos 4 900 tokens en vez de 9 000): en dos tareas reales medidas, gastó entre un 21 % y un 47 % menos de tokens, con el mismo resultado. Tus reglas de permisos, hooks y agentes con los nombres de antes se actualizan solos.
 - **Comandos en segundo plano, como Claude Code**: un servidor o una compilación larga sale como `● Bash(npm run dev)` / `⎿ Running in the background`; el agente sigue trabajando y, cuando el comando termina, se entera solo y lee lo que imprimió (queda todo en un archivo).
