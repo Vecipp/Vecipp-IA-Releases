@@ -5,6 +5,15 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.25 — 2026-10-28
+- **Las herramientas de Claude Code, con sus nombres**: el agente trabaja con las mismas herramientas que Claude Code —`Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `Agent`, `TaskStop`, `LSP`…—. Son la mitad que antes (73 en vez de 146) y la lista de herramientas que va en cada pedido al modelo pesa casi la mitad (unos 4 900 tokens en vez de 9 000): en dos tareas reales medidas, gastó entre un 21 % y un 47 % menos de tokens, con el mismo resultado. Tus reglas de permisos, hooks y agentes con los nombres de antes se actualizan solos.
+- **Comandos en segundo plano, como Claude Code**: un servidor o una compilación larga sale como `● Bash(npm run dev)` / `⎿ Running in the background`; el agente sigue trabajando y, cuando el comando termina, se entera solo y lee lo que imprimió (queda todo en un archivo).
+- **Tus servidores por `ssh`, sin contraseña**: al guardar un servidor que entra con contraseña, Vecipp instala allá una llave de tu cuenta y crea su alias; desde entonces el agente entra con `ssh <nombre>`, como Claude Code. La llave es de tu cuenta de Vecipp, no se comparte con otras cuentas del mismo computador.
+- **Lo que aprende de tu PC, a la vista**: lo que el agente descubre de tu computador («aquí winget necesita --disable-interactivity») queda en un archivo de tu cuenta (`machine-memory.md`) que puedes leer y corregir.
+- **Revisar código**: pídele «revisa mis cambios» y carga la skill `code-review` (busca secretos filtrados y defectos reales, y comprueba cada hallazgo antes de decírtelo).
+- **Más rápido en tu máquina**: el agente sabe en qué computador trabaja (núcleos y memoria) y hace a la vez tantas cosas como aguante: en un PC de 4 núcleos, hasta 8 lecturas y comandos que solo miran (`git status`, `ls`, `rg`…) al mismo tiempo, en vez de uno por uno. Los builds, las pruebas y los servidores los manda al fondo y sigue trabajando, pero sigue esperando su resultado antes de decirte que pasaron.
+- **`Ctrl+B` ahora sí acelera el trabajo**: el comando que corre pasa a segundo plano y el agente **no lo espera**: sigue en el acto con lo que no necesita ese resultado («Thinking…»). Cuando el comando termina, se entera solo y lo usa. Antes el comando se iba al fondo, pero el agente se quedaba esperándolo igual. El paso dice lo que el agente le puso al comando y «· in the background» (por ejemplo, «Long build · in the background»), y el aviso del final ya no trae marcas raras (`VCWD`).
+
 ### CLI 1.0.24 — 2026-10-27
 - **Lo que pegas, en verde, y tu mensaje muestra lo que lleva dentro**: las fichas `[Image 1]` y `[Pasted text #1 +40 lines]` del cuadro de texto salen en verde, y al enviar tu mensaje ya no lleva la ficha: se ve **todo el texto pegado** (texto plano, sin markdown) y, si pegaste o arrastraste una imagen, **su ruta**. Una captura del portapapeles no tiene ruta y sigue como `[Image 1]`.
 - **La carpeta y la rama, como en la portada**: arriba se lee `Desktop/Vecipp-IA  ⎇ claude/telegram-bloque1`, con el `⎇` y la rama en su gris, en vez de un punto y la rama perdida entre el texto. Así sabes de un vistazo en qué rama estás trabajando.
@@ -344,6 +353,17 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - Los artefactos que creas suben solos a ia.vecipp.com › Artefactos.
 
 ## Escritorio
+
+### Escritorio 1.0.14 — 2026-10-28
+- **Las herramientas de Claude Code, con sus nombres**: cada paso y cada aprobación dicen `Read`, `Edit`, `Bash`…, como en Claude Code; el agente tiene la mitad de herramientas que antes, y la lista de herramientas que va en cada pedido al modelo pesa casi la mitad.
+- **Un archivo largo con Claude ya no empieza de nuevo**: mientras el modelo escribe un archivo o un comando largo, Vecipp sabe que sigue trabajando. Antes, si tardaba más de 90 segundos, creía que se había colgado y le volvía a pedir lo mismo desde el principio.
+- **Icono propio**: Vecipp Escritorio ya tiene su icono —el logo de Vecipp sobre un cuadro oscuro, con el triángulo verde— en el instalador, el acceso directo del escritorio, la barra de tareas y el menú Inicio (antes salía el de Electron).
+- **Un diseño limpio, igual en el escritorio y en ia.vecipp.com**: grises neutros, tu mensaje en una burbuja a la derecha, la respuesta como texto limpio con un botón para copiarla, el razonamiento en una línea gris que se abre con un clic, y abajo el modelo y el aviso. La barra lateral: sesión nueva, buscar, tus recientes y tu cuenta en una sola línea (el uso del plan, el tema y los ajustes están en su menú).
+- **Y trabaja como el CLI**: lo que lee, busca y ejecuta queda plegado en una sola línea gris («Read 2 files, ran 1 shell command») que se abre con un clic; cada cambio sale como `● Update(archivo)` con sus líneas en verde y rojo; el razonamiento plegado (`∴ Thought for 6s`); mientras trabaja, `✻ … (12s · esc to interrupt)` con el plan debajo, y al terminar `✻ Engineered for 8s · done 5:03 PM`. Debajo del cuadro: `✓ Ready to build` o `◑ Thinking…` / `◑ Building…`.
+- **La carpeta a la vista**: arriba dice en qué carpeta trabaja; el `+` de abajo abre una sesión nueva en otra.
+- **Permisos como en el CLI**: «Do you want to make this edit to app.ts?» con 1. Yes · 2. Yes, and don't ask again · 3. No; respondes con 1, 2, 3 o con las flechas y Enter, y Esc dice que no.
+- **Arriba, tu computadora**: la barra de arriba es la de la ventana; muestra el nombre de tu PC con un punto verde y, al tocarlo, que Vecipp está conectado y puede usar sus archivos y apps. El título de la sesión abre su menú (abrir la carpeta, verla en ia.vecipp.com, borrarla), y en la barra lateral tienes atrás y adelante entre tus sesiones.
+- **Atajos**: `Esc` interrumpe, `Ctrl+N` abre una sesión nueva y `Ctrl+B` muestra u oculta la barra lateral.
 
 ### Escritorio 1.0.13 — 2026-10-20
 - **Tus conversaciones son solo tuyas**: cada conversación sabe de qué cuenta de Vecipp es. Si otra persona entra con su cuenta en el mismo computador, solo ve las suyas y no puede abrir ni borrar las tuyas, y nada tuyo se sube a su cuenta. Tus credenciales, tus servidores, tus claves de API y tus skills también son solo de tu cuenta. Al entrar con otra cuenta o al cerrar sesión, la lista se renueva y empiezas limpio.
