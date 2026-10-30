@@ -5,6 +5,21 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 
 ## CLI
 
+### CLI 1.0.27 — 2026-10-30
+- **Sin sustos por comandos que sólo leen**: el aviso «comando destructivo: apaga o reinicia la computadora» sale sólo cuando el comando de verdad apaga o reinicia (también en un servidor), no porque un mensaje o una ruta digan «reboot»; y revisar `crontab -l`, `fail2ban-client status`, `ufw status` o `apt list` en un servidor ya no pide permiso.
+- **Termina cuando terminó, y sigue cuando dijo que seguía**: si el agente cierra ofreciéndote un siguiente paso («si quieres, el siguiente paso sería…») ya no se le obliga a seguir (antes podía repetir el resumen dos o tres veces); y si dice «sigo añadiendo…» o «continúo con…» y se detiene sin hacerlo, se le pide que lo haga.
+- **Respuestas largas sin trabarse**: mientras llega una respuesta grande (un artefacto, un archivo entero), la pantalla sigue fluida; antes se iba poniendo lenta a medida que la respuesta crecía.
+- **Cada bloque en su corchete**: cada herramienta que ya pasó y el razonamiento que abres van dentro de un corchete de líneas finas pegado al recuadro, sobre un gris más oscuro, y lo que trabaja en vivo siempre se ve en árbol: un paso con su comando o lo que está leyendo, y varios a la vez con una rama cada uno.
+- **Más compacto, el mismo espacio entre todo**: una sola línea entre cada paso, el razonamiento, la respuesta y lo que está trabajando — la del corchete, o una en blanco —, siempre igual. Tus mensajes y el cuadro donde escribes también van en su corchete, pegado al recuadro sin tocarlo.
+- **Rojo y verde vivos en los cambios**: cuando el agente edita un archivo, lo que quita se ve en rojo vivo y lo que agrega en verde vivo, como en Claude Code.
+- **Más colores de verdad en lo que imprimen las herramientas**: los + verdes y los - rojos de `git diff --stat`, el historial de `git log` con sus ramas, las pruebas (PASS, FAIL, ✓, ✗), los logs con sus niveles (INFO, WARN, ERROR, DEBUG), los de nginx y journalctl, docker, y los archivos como los pinta Linux (carpetas, ejecutables, comprimidos, imágenes).
+- **El agente no pierde de vista lo que manda al fondo**: si una tarea deja comandos corriendo en segundo plano (los suyos o los que mandas con Ctrl+B), antes de terminar dice qué hace con cada uno: lo espera, lo revisa y lo detiene si se colgó, o te dice que queda corriendo a propósito. Nunca repite el mismo comando mientras corre, y si uno se queda callado mucho tiempo, se entera. «Detén todo» ahora detiene también los comandos, no sólo los agentes.
+- **Agentes según el trabajo**: el agente empieza mirando él mismo y suma ayudantes sólo cuando la tarea lo pide (normalmente uno o dos, más en algo grande o si se lo pides), cada uno con un título que dice qué hace. En la barra, «1 shell ↓» y «♙ 2 agents ↓»: la flecha abre lo que corre a tu lado.
+- **Claude por la API de Anthropic, completo**: ves lo que Claude razona, tu esfuerzo (/effort) llega de verdad, y ve las imágenes que le pegas.
+- **Una portada nueva, como una tarjeta**: la carpeta y la versión arriba, tu cuenta y los atajos abajo, y en medio el logo con «VECIPP» en grande, tu mapa de actividad —una columna por semana, un cuadrito por día, más verde cuanto más trabajaste— y tus cifras: tokens, días activos, mejor racha y sesiones. Y la pestaña de la terminal ya no lleva el ✳ verde.
+- **El cuadro de texto, como el de Claude Code**: una línea fina arriba y otra abajo de lado a lado, sin franja gris ni la línea verde; la barra de abajo alineada con lo que escribes, y tus mensajes enviados sin corchete.
+- **«Thought for» exacto**: dice cuánto pensó con su precisión real —«420ms», «6.5s», «1m 5s»—, y la barra de abajo cuenta en vivo mientras piensa y luego dice lo mismo que la última fila del chat.
+
 ### CLI 1.0.26 — 2026-10-28
 - **Una barra a cada lado**: cada herramienta que ya pasó y el razonamiento que abres van entre dos barras verticales, a la izquierda y a la derecha, para que cada bloque se lea aparte.
 - **«Thought for» con el tiempo real**: lo que queda en el chat dice cuánto pensó de verdad el modelo (antes, con algunos modelos, siempre decía 1s aunque hubiera pensado 10).
@@ -360,6 +375,11 @@ Lo que trae cada versión de la CLI y del escritorio. Los instaladores están en
 - Los artefactos que creas suben solos a ia.vecipp.com › Artefactos.
 
 ## Escritorio
+
+### Escritorio Próxima versión
+- **Claude por la API de Anthropic, completo**: ves lo que Claude razona, tu esfuerzo llega de verdad, y ve las imágenes que le pegas.
+- **El agente no pierde de vista lo que manda al fondo**: antes de terminar dice qué hace con cada comando que sigue corriendo (lo espera, lo detiene si se colgó o lo deja a propósito), nunca lo repite mientras corre, y «detén todo» detiene también los comandos.
+- **Agentes según el trabajo**: empieza mirando él mismo y suma ayudantes sólo cuando la tarea lo pide, cada uno con un título que dice qué hace.
 
 ### Escritorio 1.0.14 — 2026-10-28
 - **Las herramientas de Claude Code, con sus nombres**: cada paso y cada aprobación dicen `Read`, `Edit`, `Bash`…, como en Claude Code; el agente tiene la mitad de herramientas que antes, y la lista de herramientas que va en cada pedido al modelo pesa casi la mitad.
