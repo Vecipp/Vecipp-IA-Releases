@@ -28,97 +28,79 @@
 
 ## Qué es
 
-**Vecipp IA** es un agente de programación con IA. Lee y edita tu código, corre comandos, se conecta por SSH a tus
-servidores, usa el navegador y entrega documentos, páginas y diseños listos para ver. Una sola cuenta Vecipp para los
-tres:
+**Veci** es un agente de IA que vive en tu teléfono y en tu terminal. Lee y edita tu código, corre comandos, se conecta
+por SSH a tus servidores, usa tu navegador y te entrega lo que crea listo para ver. Una sola cuenta de Veci para los dos:
 
 | | Para qué | Dónde trabaja |
 |---|---|---|
-| 🖥️ **CLI** (`vecipp`) | El agente completo en tu terminal | Tu PC o tu VPS: cualquier carpeta, varias shells, SSH, bases de datos, pruebas |
-| 🪟 **Escritorio** | El mismo agente con ventana propia | Las carpetas de tu PC |
-| 🌐 **Web** ([ia.vecipp.com](https://ia.vecipp.com)) | Chat, y **Código en la nube** sobre tus repos de GitHub | El navegador, sin instalar nada |
-
-Tu uso, tus sesiones y tus artefactos se comparten entre los tres.
+| 📱 **Veci** (la app) | El agente en tu celular, con su cara y su voz: le hablas y trabaja | Tu Android, con su propio entorno Linux |
+| 🖥️ **Veci CLI** (`veci`) | El agente completo en tu terminal | Tu PC, tu VPS o tu celular: cualquier carpeta, varias shells, SSH, bases de datos, pruebas |
+| 🧭 **Veci for Chrome** | Que el CLI use tu navegador (con tu permiso) | Chrome, Edge o Brave |
 
 ## Instalación
 
-**Windows** (PowerShell):
+**La app**: [ia.vecipp.com/descargas](https://ia.vecipp.com/descargas) → Veci para Android.
+
+**El CLI en Windows** (PowerShell):
 
 ```powershell
 irm https://ia.vecipp.com/install.ps1 | iex
 ```
 
-**macOS · Linux · VPS**:
+**El CLI en macOS · Linux · VPS · el celular**:
 
 ```bash
 curl -fsSL https://ia.vecipp.com/install.sh | bash
 ```
 
 No piden permisos de administrador ni `sudo`: si no tienes Node.js 20+, instalan uno solo para tu usuario, y comprueban
-la firma SHA-256 de todo lo que descargan. Para actualizar, la misma línea.
+la firma SHA-256 de todo lo que descargan. Para actualizar, la misma línea (o Veci se actualiza solo al abrirlo).
 
-**Escritorio para Windows**: [descargar el instalador](https://ia.vecipp.com/descargas) (también en
-[Releases](https://github.com/Vecipp/Vecipp-IA-Releases/releases/latest)).
-
-## Primeros pasos
+## Primeros pasos con el CLI
 
 ```bash
 cd mi-proyecto
-vecipp                     # o vecipp-cli
+veci                       # o veci-cli
 ```
 
-1. Escribe `/login` e inicia sesión con tu cuenta Vecipp (se abre el navegador).
-2. Elige el proveedor **Vecipp IA** con `/provider`: usa tu cuenta, sin API key. (También puedes traer tu propia API key
-   de NVIDIA, Groq, OpenRouter y otros.)
+1. Escribe `/login`: se abre el navegador para crear tu cuenta de Veci o entrar.
+2. Conecta tu modelo con `/model`: tu propia clave (NVIDIA, Groq, OpenRouter, DeepSeek y otros) o tu cuenta de un
+   proveedor.
 3. Pídele lo que necesites: *«arregla el error de la página de pagos y corre las pruebas»*.
 
 ### Comandos
 
 | Comando | Qué hace |
 |---|---|
-| `/model` | Cambiar de modelo (`/model auto`: el más fuerte disponible que responda) |
-| `/uso` | Tu uso: la sesión de 5 horas y la semana, el mismo de la web y el escritorio |
-| `/artifacts` · `/open` | Los documentos, páginas y diseños que creó el agente, con su enlace en ia.vecipp.com |
-| `/sync on\|off` | Ver tus sesiones de la terminal en [ia.vecipp.com/code](https://ia.vecipp.com/code) |
-| `/resume` · `/sessions` · `/history` | Retomar una sesión guardada |
-| `/plan` · `/planmode` · `/auto` | Ver el plan · pedir permiso en cada acción · aprobar cambios solo |
+| `/model` · `/effort` | Cambiar de modelo · cuánto piensa antes de responder |
+| `/resume` · `/sessions` | Retomar una conversación guardada en tu computador |
+| `/plan` · `shift+tab` | Ver el plan · pasar entre preguntar, aprobar solo y planear |
 | `/diff` · `/context` · `/compact` | Cambios pendientes · uso del contexto · resumir para liberar contexto |
-| `/init` | Analizar el proyecto y crear `VECIPP.md` |
-| `/tools` · `/agent` · `/help` | Herramientas disponibles · rol del agente · ayuda |
+| `/init` | Analizar el proyecto y crear `VECI.md`, las reglas que el agente sigue ahí |
+| `/chrome` | Conectar tu navegador |
+| `/help` | Todo lo demás |
 
-Opciones al abrir: `vecipp -C <carpeta>`, `vecipp --version`.
+Opciones al abrir: `veci -C <carpeta>`, `veci --version`.
 
 ## Qué puede hacer
 
-- **Una terminal con estilo propio**: pantalla completa inspirada en Kali Linux, prompt `┌──(vecipp㉿proyecto)` fijo
-  abajo, terminal translúcida (`/appearance`), ratón para desplazarte, copiar y abrir cambios y enlaces, y modo root con
-  `shift+tab`. Le puedes escribir aunque esté trabajando; `ctrl+b` manda lo escrito y mueve el turno al fondo (`esc`
-  lo para).
+- **Una terminal con estilo propio**: pantalla completa, ratón para desplazarte, copiar y abrir cambios y enlaces, y le
+  puedes escribir aunque esté trabajando.
 - **Trabajar en tu código**: leer, buscar, editar y crear archivos; mostrarte cada cambio antes de aplicarlo.
 - **Correr cosas de verdad**: comandos, varias shells a la vez, procesos en segundo plano, pruebas y compilaciones.
 - **Tus servidores**: conectarse por SSH a tu VPS y trabajar ahí con las mismas herramientas.
-- **Artefactos al instante**: los documentos, páginas y diseños que crea se guardan en tu cuenta y se abren solos en
-  el navegador, ya renderizados.
-- **Tu historial en todas partes**: tus sesiones de la terminal y el escritorio se ven en la web.
-- **Un solo uso para todo**: la sesión de 5 horas y la semana son las mismas en la web, la CLI y el escritorio.
-
-## Planes
-
-Hay un plan **Gratis** con uso que se renueva cada 5 horas y cada semana, y planes con más uso y más modelos. Precios y
-detalles en [ia.vecipp.com/precios](https://ia.vecipp.com/precios). Con tu propia API key, la CLI y el escritorio no
-gastan tu plan.
+- **Tu navegador**: abrir páginas, leerlas, hacer clic y escribir por ti, y preguntarte antes de lo arriesgado.
+- **En tu celular**: la app crea apps y páginas, usa el teléfono (con tu permiso) y te cuenta lo que hace mientras lo hace.
 
 ## Privacidad
 
-Tu código se queda en tu equipo: el agente lee y edita archivos ahí. Al modelo solo le llega lo necesario para cada
-paso. Los artefactos y las sesiones sincronizadas se guardan en tu cuenta, y puedes apagarlo (`/sync off`,
-`/artifacts open off`).
+Tus conversaciones, tu código y la memoria de cada proyecto se quedan en tu equipo. Al modelo que elegiste solo le
+llega lo necesario para cada paso. Veci no recoge analíticas; tu cuenta guarda tu correo, tu nombre y tus dispositivos.
 
 ## Versiones y ayuda
 
-- **Novedades**: [CHANGELOG.md](CHANGELOG.md) y [Releases](https://github.com/Vecipp/Vecipp-IA-Releases/releases).
+- **Novedades**: [CHANGELOG.md](CHANGELOG.md) y las releases de este repositorio.
 - **Documentación**: [ia.vecipp.com/docs](https://ia.vecipp.com/docs).
-- **Soporte**: [soporte.vecipp.com](https://soporte.vecipp.com).
 
 <!-- vecipp:pie — generado por aplicar-marca: no editar a mano, se regenera -->
 ---
